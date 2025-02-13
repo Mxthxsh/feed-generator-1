@@ -1,6 +1,6 @@
 // ! This file contains all SurrealQL queries used for @skyfeed.xyz custom feeds
 
-final surrealQueries = {
+final surrealQueries = {$feeduserdid
 // ! Discover: Posts a user might enjoy, based on like history. Works by collecting your past likes of less popular posts, searching the network for users who have a similar like history, aggregating their recent likes and then ranking based on the sum of all the curator weights.
   'discover':
       r'''LET $liked_posts = (SELECT ->(like WHERE createdAt > (time::now() - 168h) AND meta::tb(out) == 'post') as likes FROM $feeduserdid).likes.out;
